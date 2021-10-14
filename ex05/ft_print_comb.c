@@ -6,19 +6,19 @@
 /*   By: sunglee <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 16:33:30 by sunglee           #+#    #+#             */
-/*   Updated: 2021/10/12 17:38:26 by sunglee          ###   ########.fr       */
+/*   Updated: 2021/10/14 16:30:36 by sunglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	ft_print_comb(void)
+void	ft_print_comb(void)
 {
 	int		num;
 	char	i[3];
 
 	num = 0;
-	while (n <= 789)
+	while (num <= 789)
 	{
 		i[0] = '0' + num / 100;
 		i[1] = '0' + (num / 10) % 10;
