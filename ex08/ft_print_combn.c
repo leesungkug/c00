@@ -6,53 +6,46 @@
 /*   By: sunglee <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 18:22:25 by sunglee           #+#    #+#             */
-/*   Updated: 2021/10/12 20:31:10 by sunglee          ###   ########.fr       */
+/*   Updated: 2021/10/14 12:15:18 by sunglee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	max(int count)
+void	print(char	*nums, int n)
 {
-	int	m;
-	int	a;
-
-	a = 0;
-	m = 1;
-	while(a <= count)
-	{
-		m = m * 10;
-		a++;
-	}
-	return(m);
+	if (nums[0] == 10 - n + '0')
+		write(1, nums, n);
+	else
+		write(1, nums, n + 2);
 }
 
-void	ft_print_combn(int n)
+void	comb(int n, int	count, char	*nums)
 {
-	int		no;
-	int		a;
-	int 	b;
-	char	c[9];
+	int	index;
 
-	no = n;
-	a = 0;
-	while(a <= max(no))
+	if (count == n)
 	{
-		b = n - 1;
-		while (b >= 0)
+		print(nums, n);
+		return ;
+	}
+	index = 0;
+	while (index < 10)
+	{
+		if (count == 0 || nums[count - 1] < index + '0')
 		{
-			c[b] = (a % 10) + '0';
-			write (1, &c, 1);
-			b--;
+			nums[count] = index + '0';
+			comb(n, count + 1, nums);
 		}
-		write (1, ", ", 2);
-		a++;
+		index++;
 	}
 }
 
-int	main(void)
+void	ft_print_combn(int	n)
 {
-	ft_print_combn(2);
-	return(0);
-}
+	char	nums[11];
 
+	nums[n] = ',';
+	nums[n + 1] = ' ';
+	comb(n, 0, nums);
+}
